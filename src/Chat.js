@@ -1,18 +1,26 @@
 import { Avatar, IconButton } from "@material-ui/core";
 import DonutLargeIcon from '@material-ui/icons/DonutLarge';
 import ChatIcon from '@material-ui/icons/Chat';
+import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
+import MicIcon from "@material-ui/icons/Mic";
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import React ,{useEffect,useState}from 'react';
 import './Chat.css';
 
 function Chat() {
+    const [input,setInput] = useState("");
     const [seed,setSeed] = useState("");
 
     useEffect(() => {
         setSeed(Math.floor(Math.random()* 5000));
     }, []);
 
+const sendMessage = (e) => {
+e.preventDefault();
+console.log("you typed >>>", input);
 
+setInput("");
+};
 
     return (
         <div className='chat'>
@@ -34,23 +42,36 @@ function Chat() {
                 <IconButton>
                      <MoreVertIcon/>
                 </IconButton>
-
-
-
-
-
-
-</div>
-
                 </div>
-                <div className="chat__body">
+            </div>
+            <div className="chat__body">
+             <p className={`chat__message ${true && 
+      'chat__receiver'}`}>
+            <span className="chat__name">mayuri</span>
+                Hey guys
+            <span
+         className="chat__timestamp">3:52pm
+            </span>
 
-                </div>
-                <div className="chat__footer">
-
-                </div>
+                </p>
+            </div>
+            <div className="chat__footer">
+                <InsertEmoticonIcon />
+                <form>
+                    <input
+                        value={input}
+                        onChange={(e) => setInput(e.target.value)}
+                        placeholder="Type a message"
+                        type="text"
+                    />
+                    <button onClick={sendMessage}
+                        type="submit">
+                        send a message</button>
+                </form>
+                <MicIcon />
+            </div>
         </div>
-    )
+    );
 }
 
 export default Chat;
