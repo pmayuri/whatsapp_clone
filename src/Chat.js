@@ -23,23 +23,23 @@ useEffect(() => {
      (snapshot.data().name)
     );
  }
-}, [roomId])
+}, [roomId]);
 
 
     useEffect(() => {
-        setSeed(Math.floor(Math.random()* 5000));
+        setSeed(Math.floor(Math.random() * 5000));
     }, []);
 
-const sendMessage = (e) => {
-e.preventDefault();
-console.log("you typed >>>", input);
+    const sendMessage = (e) => {
+        e.preventDefault();
+        console.log("you typed >>>", input);
 
-setInput("");
-};
+        setInput("");
+    };
 
     return (
         <div className='chat'>
-            
+
                 <div className="chat__header">
                  <Avatar src={`https://avatars.dicebear.com/api/human/${seed}.svg`}/>
 
